@@ -11,7 +11,7 @@ const TodoListItem = ({label, important = false, done = false, onDeleted, onLabe
 
     <span className='todo-list-item-label' 
     onClick={ onLabelClick }> 
-    { label } 
+      { label } 
     </span>
 
     <div>

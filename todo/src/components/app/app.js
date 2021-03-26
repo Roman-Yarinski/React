@@ -26,11 +26,11 @@ const App = () => {
   const onImportantClick = (id) => {
     setState( ({todoData}) => {
       const newTodo = todoData.map(e => {
-        let r = e;
+        let res = e;
         if(e.id === id) {
-          r = {...e, important: !e.important};
+          res = {...e, important: !e.important};
         }
-        return r;
+        return res;
       });
       return {...state, todoData: newTodo}; 
     });
@@ -39,11 +39,11 @@ const App = () => {
   const onLabelClick = (id) => {
     setState( ({todoData}) => {
       const newTodo = todoData.map(e => {
-        let r = e;
+        let res = e;
         if(e.id === id) {
-          r = {...e, done: !e.done};
+          res = {...e, done: !e.done};
         }
-        return r;
+        return res;
       });
       return {...state, todoData: newTodo}; 
     });
@@ -55,6 +55,7 @@ const App = () => {
         case 'active':
           res = state.todoData.filter((e)=>!e.done)
           break;
+
         case 'done':
           res = state.todoData.filter((e)=>e.done)
           break;
@@ -82,7 +83,10 @@ const App = () => {
     if(e) {
       e.preventDefault();
     }
+
     let text = document.querySelector('.search-input').value;
+    text = text.replace(/\s+/g, ' ').trim();
+    
     if(text) {
       setState( ({todoData}) => {
         let newTodo = [...todoData];
@@ -100,21 +104,21 @@ const App = () => {
 
   return (
     <div className='container'>
-    <AppHeader todo={todo} done={done} />
-    <SearchPanel 
-    filter={state.filter}
-    onItemAdded={(e) => onItemAdded(e)} 
-    onSortActive={ () => onSortActive()}
-    onSortDone={ () => onSortDone() } 
-    onSortAll={ () => onSortAll() } />
-    <ItemAddForm 
-    onItemAdded={() => {onItemAdded()}}/>
-    <TodoList todos={result} 
-    onDeleted={ (id) => onDeleted(id) } 
-    onLabelClick={(id) => {onLabelClick(id)}} 
-    onImportantClick= {(id) => {onImportantClick(id)}}
-    />
-  </div>
+      <AppHeader todo={todo} done={done} />
+      <SearchPanel 
+      filter={state.filter}
+      onItemAdded={(e) => onItemAdded(e)} 
+      onSortActive={ () => onSortActive()}
+      onSortDone={ () => onSortDone() } 
+      onSortAll={ () => onSortAll() } />
+      <ItemAddForm 
+      onItemAdded={() => {onItemAdded()}}/>
+      <TodoList todos={result} 
+      onDeleted={ (id) => onDeleted(id) } 
+      onLabelClick={(id) => {onLabelClick(id)}} 
+      onImportantClick= {(id) => {onImportantClick(id)}}
+      />
+    </div>
   );
 }
 
