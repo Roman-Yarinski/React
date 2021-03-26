@@ -1,12 +1,24 @@
 import React from 'react';
 import './item-status-filter.css'
 
-const ItemStatusFilter = () => {
+const ItemStatusFilter = ({ onSortActive, onSortDone, onSortAll, filter }) => {
   return (
     <div className='btn-group'>
-      <button type='button' className='btn btn-info'>All</button>
-      <button type='button' className='btn btn-outline-secondary'>Active</button>
-      <button type='button' className='btn btn-outline-secondary'>Done</button>
+      {console.log('Filter: ', filter === 'done')}
+      <button type='button' className={ 
+        `btn ${ filter === 'all' ? 'btn-info' : 'btn-outline-secondary' }`
+      }
+      onClick={ onSortAll }>All</button>
+      <button type='button' 
+      className={ 
+        `btn ${ filter === 'active' ? 'btn-info' : 'btn-outline-secondary' }`
+      }
+      onClick={ onSortActive } >Active</button>
+      <button type='button' 
+      className={ 
+        `btn ${ filter === 'done' ? 'btn-info' : 'btn-outline-secondary' }`
+      }
+      onClick={ onSortDone } >Done</button>
     </div>
   );
 }

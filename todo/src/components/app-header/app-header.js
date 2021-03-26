@@ -1,11 +1,11 @@
 import React from 'react';
 import './app-header.css';
 
-const AppHeader = () => {
+const AppHeader = ({todo, done}) => {
   return (
-  <div className='app-header'>
+  <div className='app-header d-flex'>
   <h1 className='app-header'>My Todo</h1>
-  <h2 className='app-header'>1 more to do, 3 done</h2>
+  <h2 className='app-header'>{todo} more to do, {done} done</h2>
   </div>
   )
 }

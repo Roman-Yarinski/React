@@ -2,12 +2,16 @@ import React from 'react';
 import ItemStatusFilter from '../item-status-filter';
 import './search-panel.css';
 
-const SearchPanel = () => {
+const SearchPanel = ({ onItemAdded, onSortDone , onSortActive, onSortAll, filter }) => {
   return  (
-  <div className='search-panel'>
-  <input className='search-input' placeholder='search'  />
-  <ItemStatusFilter />
-  </div>
+  <form className='search-panel' onSubmit={onItemAdded}>
+  <input className='search-input' placeholder='Add Todo'  />
+  <ItemStatusFilter 
+  filter = { filter }
+  onSortDone={ onSortDone } 
+  onSortActive = { onSortActive } 
+  onSortAll = { onSortAll }/>
+  </form>
   );
 }
 
